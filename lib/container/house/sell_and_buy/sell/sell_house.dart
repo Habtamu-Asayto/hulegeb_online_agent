@@ -610,7 +610,7 @@ class _SellHouseState extends State<SellHouse> {
                                                                     .size
                                                                     .width /
                                                                 2 -
-                                                            0.12 *
+                                                            0.1 *
                                                                 MediaQuery.of(
                                                                         context)
                                                                     .size
