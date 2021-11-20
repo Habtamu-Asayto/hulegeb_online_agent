@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:hulegeb_online_agent/container/house/sell_and_buy/buy/detail.dart';
 
