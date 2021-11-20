@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "485701360345",
+    "project_id": "hulegeb-online-agent",
+    "storage_bucket": "hulegeb-online-agent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485701360345:android:a201b86a761ef4e52d3cc8",
+        "android_client_info": {
+          "package_name": "com.example.hulegeb_online_agent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "485701360345-6gd9td39paslese18dpqmsv2fm7ti6qh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hulegeb_online_agent",
+            "certificate_hash": "daa85be2de089db7e4a377fee6ce562261444af2"
+          }
+        },
+        {
+          "client_id": "485701360345-13m80u1j7ptb655jtq12mu1m9hv4kijt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFMhKeKJIoWHN5WdKZn2MgDZwv0ONrHOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "485701360345-13m80u1j7ptb655jtq12mu1m9hv4kijt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
