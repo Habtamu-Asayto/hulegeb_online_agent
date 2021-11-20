@@ -37,7 +37,7 @@ class HouseModel {
   double get finPrice => _finPrice;
   String get houseType => _houseType;
   String get houseStatus => _houseStatus;
-  List get images => _images;
+  List images() => _images;
   bool get featured => _featured;
 
   HouseModel.fromSnapshot(DocumentSnapshot snapshot) {

@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:hulegeb_online_agent/loading/splashScreen.dart';
 import 'package:hulegeb_online_agent/provider/google_sign_in.dart';
+import 'package:hulegeb_online_agent/provider/house.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -21,7 +22,12 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider.value(value: HouseProvider.initialize()),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

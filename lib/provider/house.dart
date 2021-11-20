@@ -4,14 +4,14 @@ import 'package:hulegeb_online_agent/services/houses.dart';
 
 class HouseProvider with ChangeNotifier {
   HouseServices _houseServices = HouseServices();
-  List<HouseModel> products = [];
+  List<HouseModel> houses = [];
 
   HouseProvider.initialize() {
-    loadProducts();
+    loadHouse();
   }
 
-  loadProducts() async {
-    products = await _houseServices.getProducts();
+  loadHouse() async {
+    houses = await _houseServices.getHouses();
     notifyListeners();
   }
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hulegeb_online_agent/container/house/sell_and_buy/buy/detail.dart';
+import 'package:hulegeb_online_agent/container/house/sell_and_buy/buy/house_card.dart';
+import 'package:hulegeb_online_agent/provider/house.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:provider/provider.dart';
 
 class BuyHouse extends StatefulWidget {
   @override
@@ -18,8 +21,11 @@ class _BuyHouseState extends State<BuyHouse> {
   ];
 
   late final Function press;
+
   @override
   Widget build(BuildContext context) {
+    HouseProvider houseProvider = Provider.of<HouseProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Buy House"),
@@ -127,10 +133,18 @@ class _BuyHouseState extends State<BuyHouse> {
                       SizedBox(
                         height: 3,
                       ),
-                      ItemCard(),
-                      ItemCard(),
-                      ItemCard(),
-                      ItemCard(),
+                      Column(
+                        children: houseProvider.houses
+                            .map((item) => GestureDetector(
+                                  child: HouseCard(
+                                    house: item,
+                                  ),
+                                ))
+                            .toList(),
+                      ),
+                      SizedBox(
+                        height: 27,
+                      ),
                     ],
                   )
                 ],
@@ -138,90 +152,6 @@ class _BuyHouseState extends State<BuyHouse> {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class ItemCard extends StatelessWidget {
-  const ItemCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
-      // color: Colors.cyan[300],
-      height: 170,
-      child: InkWell(
-        onTap: () {
-          Navigator.push(
-              (context), MaterialPageRoute(builder: (context) => Detail()));
-        },
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            //Item list
-            Container(
-              height: 144,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.cyan[500],
-                  boxShadow: [
-                    BoxShadow(
-                        blurRadius: 27,
-                        color: Colors.black12,
-                        offset: Offset(0, 15))
-                  ]),
-              child: Container(
-                margin: EdgeInsets.only(right: 10),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(6)),
-              ),
-            ),
-
-            Positioned(
-                top: 0,
-                right: 0,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 7),
-                  height: 160,
-                  width: 200,
-                  child: Image.asset("images/school.jpg", fit: BoxFit.cover),
-                )),
-
-            Positioned(
-                bottom: 0,
-                left: 0,
-                child: SizedBox(
-                    height: 136,
-                    width: MediaQuery.of(context).size.width - 200,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Text(
-                              "This is lexious Apartama for families with cheapest price.",
-                              style: Theme.of(context).textTheme.button),
-                        ),
-                        Spacer(),
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-                          decoration: BoxDecoration(
-                              color: Colors.deepOrange,
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(6))),
-                          child: Text("3.5 million birr",
-                              style: Theme.of(context).textTheme.button),
-                        )
-                      ],
-                    )))
-          ],
-        ),
       ),
     );
   }

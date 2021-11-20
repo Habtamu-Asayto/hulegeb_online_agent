@@ -2,13 +2,24 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:hulegeb_online_agent/loading/loading.dart';
+import 'package:hulegeb_online_agent/models/house.dart';
+import 'package:transparent_image/transparent_image.dart';
 
-class Detail extends StatelessWidget {
-  const Detail({Key? key}) : super(key: key);
+class HouseDetail extends StatefulWidget {
+  final HouseModel house;
+  HouseDetail({Key? key, required this.house}) : super(key: key);
 
+  @override
+  _HouseDetailState createState() => _HouseDetailState();
+}
+
+class _HouseDetailState extends State<HouseDetail> {
+  final _key = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
       appBar: AppBar(
         title: Text("Item Detail"),
         backgroundColor: Colors.grey[300],
@@ -34,8 +45,13 @@ class Detail extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: ItemPicture(
-                    image: "images/school.jpg",
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: widget.house.images()[0],
+                    fit: BoxFit.fill,
+                    height: MediaQuery.of(context).size.height -
+                        MediaQuery.of(context).size.height * 0.6,
+                    width: double.infinity,
                   ),
                 ),
                 Padding(
@@ -59,14 +75,14 @@ class Detail extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Lexiouries Apartama",
+                    widget.house.houseType,
                     style: Theme.of(context).textTheme.headline6,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "3,5 Million birr",
+                    widget.house.initPrice.toString(),
                     style: TextStyle(
                         fontSize: 19,
                         fontWeight: FontWeight.w500,
@@ -76,7 +92,7 @@ class Detail extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(8),
                   child: Text(
-                    "This Apartama is found arround center of the city",
+                    widget.house.desc,
                     style: TextStyle(color: Colors.black45),
                   ),
                 ),

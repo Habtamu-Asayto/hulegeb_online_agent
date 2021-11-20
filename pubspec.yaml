@@ -47,6 +47,9 @@ dependencies:
   provider: ^4.3.1
   shared_preferences: null
   uuid: ^3.0.2
+ 
+  transparent_image: ^0.1.0
+  loading: ^1.0.0
 
 dev_dependencies:
   flutter_test:
