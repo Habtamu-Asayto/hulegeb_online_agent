@@ -155,4 +155,6 @@ class _BuyHouseState extends State<BuyHouse> {
       ),
     );
   }
+
+  loadMore() {}
 }

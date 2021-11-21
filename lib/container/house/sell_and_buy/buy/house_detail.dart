@@ -1,9 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:hulegeb_online_agent/loading/loading.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:hulegeb_online_agent/models/house.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:transparent_image/transparent_image.dart';
 
 class HouseDetail extends StatefulWidget {
@@ -16,6 +16,9 @@ class HouseDetail extends StatefulWidget {
 
 class _HouseDetailState extends State<HouseDetail> {
   final _key = GlobalKey<ScaffoldState>();
+  String number = '0918564813';
+  String sms = 'sms:0904947801?body=Hello dear, I need this House.';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,15 +47,13 @@ class _HouseDetailState extends State<HouseDetail> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: FadeInImage.memoryNetwork(
-                    placeholder: kTransparentImage,
-                    image: widget.house.images()[0],
-                    fit: BoxFit.fill,
-                    height: MediaQuery.of(context).size.height -
-                        MediaQuery.of(context).size.height * 0.6,
-                    width: double.infinity,
-                  ),
+                FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: widget.house.images()[0],
+                  fit: BoxFit.fill,
+                  height: MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).size.height * 0.6,
+                  width: double.infinity,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 7),
@@ -111,7 +112,10 @@ class _HouseDetailState extends State<HouseDetail> {
                   Container(
                     height: 50,
                     child: ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () async {
+                          //launch("tel://$number");
+                          await FlutterPhoneDirectCaller.callNumber(number);
+                        },
                         icon: Icon(Icons.call),
                         label: Text(
                           "Call",
@@ -123,7 +127,9 @@ class _HouseDetailState extends State<HouseDetail> {
                   Container(
                     height: 50,
                     child: ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          launch(sms);
+                        },
                         icon: Icon(Icons.sms),
                         label: Text(
                           "SMS",
